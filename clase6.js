@@ -9,8 +9,8 @@ var alex = {
     Edad : 28
 }
 
-function imprimirNombreEnMayusculas(n) {
-  n = n.Nombre.toUpperCase()
+function imprimirNombreEnMayusculas({Nombre}) {
+  n = Nombre.toUpperCase()
   console.log(n)
 }
 
