@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+	<img src="">
+	<script type="text/javascript">
+		const API = 'https://restcountries.eu/rest/v2/capital/montevideo'
+		let img   = document.querySelector('img')
+
+		axios.get(API).then( function (response) {
+			let uruguay = response.data[0]
+
+			// Asignando a la propiedad SRC la URL de la bandera de uruguay
+			img.src = uruguay.flag; 
+
+			console.log("response: ", response.data)
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div>
+		<input type="text" placeholder="Capital" id="capital">
+		<button onclick="buscarBandera()">Buscar bandera</button>
+	</div>
+    <img src="" width="120px" style="margin-top: 1rem;">
+    <p id="nombre"></p>
+
+	<script type="text/javascript">
+		const API = 'https://restcountries.eu/rest/v2/capital/'
+		let img   = document.querySelector('img')
+        let input = document.querySelector('#capital')
+        const buscarBandera = function (){
+			let capital = input.value;
+
+			axios.get(API + capital).then( function (response) {
+                let pais = response.data[0]
+                
+				// Va a obtener la bandera del pais que busquemos por capital
+                img.src = pais.flag; 
+                document.getElementById("nombre").innerHTML = pais.name;
+                console.log(pais, pais.name)
+			})
+		}
+	</script>
+</body>
+</html>

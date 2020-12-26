@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- 
+		Agregamos el script de axios
+		axios comunica a traves de HTTP el JS y la API
+		 - POST
+		 - PUT
+		 - GET 
+		 - DELETE
+	 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+	<!-- 
+		OBJETO ~ FORMULARIO
+		{
+			nombre: "Manzana",
+			precio: 10,
+			cantidad: 2
+		}
+	 -->
+	<form id="form--producto">
+		<input type="text" id="nombre" placeholder="Nombre">
+		<br>
+		<input type="number" id="precio" placeholder="Precio">
+		<br>
+		<input type="number" id="cantidad" placeholder="Cantidad">
+		<br>
+		<button type="button" onclick="guardarProducto()">Guardar</button>
+	</form>
+
+	<script type="text/javascript">
+		// En crudcrud.com les va a dar una URL asi: https://crudcrud.com/api/7472b6418ca4478290c02733e6d9093d
+		// Luego se agrega /modelo ~ /usuarios
+		// 
+		// /clientes
+		// /mascotas
+		// 
+		const API  = 'https://crudcrud.com/api/9dbe2e6ec91742569771376851100886/productos'
+
+		let nombre   = document.querySelector('#nombre')
+		let precio 	 = document.querySelector('#precio')
+		let cantidad = document.querySelector('#cantidad') 
+
+		const guardarProducto = function () {
+			const producto = {
+				nombre: nombre.value,
+				precio: precio.value,
+				cantidad: cantidad.value
+			}
+
+			// axios.post ~> Crea un elemento nuevo
+			axios.post(API, producto).then( function (res){
+				console.log("success: ", res.data)
+
+				alert("Producto creado correctamente.")
+			
+			}).catch( function (err){
+				
+				alert("Error al crear producto.")
+
+				console.log("error: ", err)
+			})
+
+			console.log("guardar ::", producto)
+		}
+	</script>
+</body>
+</html>
